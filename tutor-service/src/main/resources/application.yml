@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: ${APPLICATION_NAME:tutor-service}
+
+  kafka:
+    producer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:group}
+
+    custom:
+      tutor-signup-topic: ${KAFKA_TUTOR_SIGNUP_TOPIC:tutor-signup-events}
+      tutor-signup-email-topic: ${KAFKA_TUTOR_SIGNUP_EMAIL_TOPIC:student-signup-email-events}
+      enable-listeners: ${KAFKA_ENABLE_LISTENERS:true}
+  #      notification-topic: ${KAFKA_NOTIFICATION_TOPIC:notification-events}
+
+  data:
+    mongodb:
+      #      uri: mongodb://${MONGO_URL:localhost}:${MONGO_PORT:27017}/${MONGO_DATABASE:candidate-db}
+      #      authentication-database: admin
+      #      username: ${MONGO_USERNAME:mongo}
+      #      password: ${MONGO_PASSWORD:mongo}
+      database: ${MONGO_DATABASE:tutor-db}
+      port: 27017
+      host: ${MONGO_URL:localhost}
+      auto-index-creation: true
+
+  sleuth:
+    sampler:
+      percentage: 1
+
+  zipkin:
+    enabled: ${ZIPKIN_ENABLED:true}
+    baseUrl: ${ZIPKIN_URL:http://localhost:9411/}
+
+app:
+  jwt:
+    token:
+      secret-key: ${JWT_SECRET_KEY:secret}
+      expiry: 100000
+
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        register-health-indicator: true
+    instances:
+      defaultsForTutorServiceApp:
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30000
+        permitted-number-of-calls-in-half-open-state: 2
+
+  retry:
+    configs:
+      default:
+        registerHealthIndicator: true
+    instances:
+      retryForTutors:
+        maxRetryAttempts: 3
+        wait-duration: 2000
+
+server:
+  port: 8082
