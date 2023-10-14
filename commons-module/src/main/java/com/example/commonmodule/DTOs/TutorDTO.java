@@ -5,6 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The TutorDTO class represents a data transfer object for tutor-related information.
+ * It includes fields such as tutor ID, expertise, short information, and user ID.
+ */
 @Data
 @Builder
 @AllArgsConstructor
@@ -15,3 +19,4 @@ public class TutorDTO {
     private String shortInfo;
     private Long userId;
 }
+

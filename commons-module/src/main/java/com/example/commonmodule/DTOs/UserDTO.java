@@ -5,6 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The UserDTO class represents a data transfer object for user-related information.
+ * It includes fields such as ID, username, password, role, full name, address, phone, description,
+ * expertise, and short information.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
