@@ -2,7 +2,7 @@ package com.example.authenticationservice.services;
 
 import com.example.authenticationservice.entities.User;
 import com.example.authenticationservice.repositories.UserRepository;
-import com.example.commonsmodule.security.OurUserDetails;
+import com.example.commonmodule.security.OurUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

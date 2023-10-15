@@ -14,11 +14,14 @@
         <module>reservation-service</module>
         <module>tutor-service</module>
         <module>authentication-service</module>
+        <module>tutor-requirement-service</module>
+        <module>tutor-requirement-search-service</module>
+        <module>student-service</module>
         <module>notification-service</module>
     </modules>
     <properties>
-        <maven.compiler.source>18</maven.compiler.source>
-        <maven.compiler.target>18</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

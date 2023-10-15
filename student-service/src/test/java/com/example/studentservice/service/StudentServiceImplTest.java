@@ -1,7 +1,7 @@
 package com.example.studentservice.service;
 
 
-import com.example.commonsmodule.DTOs.StudentDTO;
+import com.example.commonmodule.DTOs.StudentDTO;
 import com.example.studentservice.entities.Student;
 import com.example.studentservice.repositories.StudentRepository;
 import com.example.studentservice.services.impl.StudentServiceImpl;
@@ -52,14 +52,14 @@ public class StudentServiceImplTest {
 
 
 
-                .description("Pradip live in fairfield and interested in SWA.")
+                .description("Pradip live in fairfield and interested in SWE.")
                 .build();
 
     }
 
     private StudentDTO setStudentDTO() {
         return StudentDTO.builder()
-                .description("Pradip live in fairfield and interested in SWA.")
+                .description("Pradip live in fairfield and interested in SWE.")
                 .build();
     }
 
@@ -76,7 +76,7 @@ public class StudentServiceImplTest {
     @Test
     void test_save() {
         Student studentToSave = Student.builder()
-                .description("Pradip live in fairfield and interested in SWA.")
+                .description("Pradip live in fairfield and interested in SWE.")
                 .build();
         when(studentRepository.save(any())).thenReturn(studentToSave);
         StudentDTO studentDTO1 = studentService.save(studentDTO);

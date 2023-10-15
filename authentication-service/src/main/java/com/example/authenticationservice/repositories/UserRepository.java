@@ -1,7 +1,7 @@
 package com.example.authenticationservice.repositories;
 
 import com.example.authenticationservice.entities.User;
-import com.example.commonsmodule.DTOs.UserDTO;
+import com.example.commonmodule.DTOs.UserDTO;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
