@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: swa3-zipkin
+  name: swe3-zipkin
 spec:
   selector:
     app: zipkin

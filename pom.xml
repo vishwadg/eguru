@@ -14,6 +14,9 @@
         <module>reservation-service</module>
         <module>tutor-service</module>
         <module>authentication-service</module>
+        <module>tutor-requirement-service</module>
+        <module>tutor-requirement-search-service</module>
+        <module>student-service</module>
         <module>notification-service</module>
     </modules>
     <properties>

@@ -26,7 +26,7 @@ data:
   redis_port: '6379'
 
   # Tracing: Zipkin
-  zipkin_url: swa3-zipkin # 9411
+  zipkin_url: swe3-zipkin # 9411
 
   # === Database ====
   # Elastic Search
@@ -34,7 +34,7 @@ data:
   elastic_port: '9200'
 
   # MySQL
-  mysql_url: swa-mysql.default.svc.cluster.local
+  mysql_url: swe-mysql.default.svc.cluster.local
   mysql_authDBName: auth-db
 
   # MySQL
