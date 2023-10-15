@@ -1,6 +1,9 @@
 package com.example.authenticationservice.services.impl;
 
 import com.example.authenticationservice.entities.DTOs.TokenResponse;
+import com.example.commonmodule.DTOs.UserDTO;
+import com.example.commonmodule.security.JwtTokenProvider;
+import com.example.commonmodule.security.enums.UserRole;
 import com.example.commonsmodule.DTOs.StudentDTO;
 import com.example.commonsmodule.DTOs.TutorDTO;
 import com.example.commonsmodule.DTOs.UserDTO;

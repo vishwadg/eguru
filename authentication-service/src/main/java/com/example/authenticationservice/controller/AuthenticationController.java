@@ -2,6 +2,7 @@ package com.example.authenticationservice.controller;
 
 
 import com.example.authenticationservice.entities.DTOs.TokenResponse;
+import com.example.commonmodule.DTOs.UserDTO;
 import com.example.commonsmodule.DTOs.UserDTO;
 import com.example.authenticationservice.entities.DTOs.UserLoginDTO;
 import com.example.authenticationservice.services.AuthenticationService;
