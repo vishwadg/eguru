@@ -17,7 +17,7 @@ public interface ReservationRepository extends MongoRepository<Reservation, Stri
      * Retrieves a list of reservations associated with a specific tutor requirement or subject.
      *
      * @param tutorRequirementId The ID of the tutor requirement or subject to filter reservations.
-     * @return A list of Reservation objects matching the specified tutor requirement.
+     * @return A list of Reservation objects matching the specified requirement.
      */
     List<Reservation> findReservationsByTutorRequirementId(String tutorRequirementId);
 
@@ -25,15 +25,15 @@ public interface ReservationRepository extends MongoRepository<Reservation, Stri
      * Retrieves all reservations made by a tutor user.
      *
      * @param userId The ID of the tutor user to filter reservations.
-     * @return A list of Reservation objects made by the specified tutor user.
+     * @return A list of Reservation objects made by the specified user.
      */
     List<Reservation> findAllByTutorUserId(Long userId);
 
     /**
-     * Retrieves all reservation requests made by a student user.
+     * Retrieves all reservation
      *
      * @param userId The ID of the student user to filter reservation requests.
-     * @return A list of Reservation objects representing reservation requests made by the specified student user.
+     * @return A list of Reservation objects representing reservation requests.
      */
     List<Reservation> findAllByStudentUserId(Long userId);
 }

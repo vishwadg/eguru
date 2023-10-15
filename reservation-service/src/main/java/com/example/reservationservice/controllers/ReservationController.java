@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 /**
- * The ReservationController class serves as the controller for managing reservation-related endpoints in the tutoring application.
+ * The ReservationController class serves as the controller for managing reservation-related endpoints.
  */
 @Slf4j
 @RestController
@@ -22,7 +22,7 @@ public class ReservationController {
     private ReservationService reservationService;
 
     /**
-     * Creates a new reservation, allowing tutors to book tutoring sessions.
+     * Creates a new reservation
      *
      * @param reservationDTO The ReservationDTO object containing reservation details.
      * @return A ResponseEntity with the saved ReservationDTO and an HTTP status of 200 (OK).
@@ -34,7 +34,7 @@ public class ReservationController {
     }
 
     /**
-     * Updates the status of a reservation, typically for confirming or canceling bookings.
+     * Updates the status of a reservation.
      *
      * @param reservationDTO The ReservationDTO object containing updated reservation status.
      * @return A ResponseEntity with the updated ReservationDTO and an HTTP status of 200 (OK).
@@ -69,7 +69,7 @@ public class ReservationController {
     }
 
     /**
-     * Retrieves all reservations made by a tutor user.
+     * Retrieves all reservations made by a user.
      *
      * @return A ResponseEntity with a list of ReservationDTO objects and an HTTP status of 200 (OK).
      */
@@ -79,7 +79,7 @@ public class ReservationController {
     }
 
     /**
-     * Retrieves all reservation requests made by a student user.
+     * Retrieves all reservation requests made by a user.
      *
      * @return A ResponseEntity with a list of ReservationDTO objects and an HTTP status of 200 (OK).
      */
