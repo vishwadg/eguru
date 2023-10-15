@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: ${APPLICATION_NAME:tutor-requirement-service}
+
+  kafka:
+    # Kafka broker connection settings
+    producer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:127.0.0.1:9092}
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:services-group}
+
+    # Kafka topic names
+    custom:
+      tutor-topic: ${KAFKA_TUTOR_TOPIC:tutor-events}
+      application-topic: ${KAFKA_APPLICATION_TOPIC:application-events}
+      tutor_requirement_topic: ${KAFKA_TUTOR_REQUIREMENT_TOPIC:tutor-requirement-events}
+      notification-topic: ${KAFKA_NOTIFICATION_TOPIC:notification-events}
+
+  data:
+    mongodb:
+      username: ${MONGO_USERNAME:mongo}
+      password: ${MONGO_PASSWORD:mongo}
+      database: ${MONGO_DATABASE:tutor-requirement-db}
+      port: 27017
+      host: ${MONGO_URL:localhost}
+      auto-index-creation: true
+  sleuth:
+    sampler:
+      percentage: 1
+
+  zipkin:
+      enabled: ${ZIPKIN_ENABLED:true}
+      base-url: ${ZIPKIN_URL:http://localhost:9411/}
+
+app:
+  jwt:
+    token:
+      secret-key: ${JWT_SECRET_KEY:secret}
+      expiry: 100000
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+server:
+  port: ${SERVER_PORT:8083}
