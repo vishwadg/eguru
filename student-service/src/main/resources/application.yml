@@ -1,0 +1,130 @@
+spring:
+  application:
+    name: ${APPLICATION_NAME:student-service}
+
+  # Kafka configuration
+  kafka:
+    # Kafka producer configuration
+    producer:
+      # Kafka bootstrap server
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
+    # Kafka consumer configuration
+    consumer:
+      # Kafka bootstrap server
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
+      # Kafka consumer group
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:group}
+
+    # Kafka custom configuration
+    custom:
+      # Kafka student signup topic
+      student-signup-topic: ${KAFKA_STUDENT_SIGNUP_TOPIC:student-signup-events}
+      # Kafka student signup email topic
+      student-signup-email-topic: ${KAFKA_STUDENT_SIGNUP_EMAIL_TOPIC:student-signup-email-events}
+      # Enable Kafka listeners
+      enable-listeners: ${KAFKA_ENABLE_LISTENERS:true}
+
+  # MongoDB configuration
+  data:
+    mongodb:
+      # MongoDB username
+      username: ${MONGO_USERNAME:mongo}
+      # MongoDB password
+      password: ${MONGO_PASSWORD:mongo}
+      # MongoDB database
+      database: ${MONGO_DATABASE:student-db}
+      # MongoDB port
+      port: 27017
+      # MongoDB host
+      host: ${MONGO_URL:localhost}
+      # Enable index creation
+      auto-index-creation: true
+
+  # Sleuth configuration
+  sleuth:
+    # Sampler configuration
+    sampler:
+      # Sampling percentage
+      percentage: 1
+
+  # Zipkin configuration
+  zipkin:
+    # Enable Zipkin
+    enabled: ${ZIPKIN_ENABLED:true}
+    # Zipkin base URL
+    base-url: ${ZIPKIN_URL:http://localhost:9411/}
+
+# JWT configuration
+app:
+  jwt:
+    # JWT secret key
+    token:
+      secret-key: ${JWT_SECRET_KEY:secret}
+      # JWT expiry
+      expiry: 100000
+
+# Management configuration
+management:
+  # Endpoint configuration
+  endpoint:
+    # Metrics endpoint
+    metrics:
+      # Enable metrics endpoint
+      enabled: true
+    # Prometheus endpoint
+    prometheus:
+      # Enable Prometheus endpoint
+      enabled: true
+  # Endpoints configuration
+  endpoints:
+    # Web endpoint
+    web:
+      # Exposure configuration
+      exposure:
+        # Include health, info and prometheus endpoints
+        include: health,info,prometheus
+
+# Resilience4j configuration
+resilience4j:
+  # CircuitBreaker configuration
+  circuitbreaker:
+    # Configuration
+    configs:
+      # Default configuration
+      default:
+        # Register health indicator
+        registerHealthIndicator: true
+    # Instances
+    instances:
+      # Defaults for candidate service app
+      defaultsForCandidateServiceApp:
+        # Minimum number of calls
+        minimumNumberOfCalls: 5
+        # Failure rate threshold
+        failureRateThreshold: 50
+        # Wait duration in open state
+        waitDurationInOpenState: 30000
+        # Permit number of calls in half open state
+        permitNumberOfCallsInHalfOpenState: 2
+
+  # Retry configuration
+  retry:
+    # Configuration
+    configs:
+      # Default configuration
+      default:
+        # Register health indicator
+        registerHealthIndicator: true
+    # Instances
+    instances:
+      # Retry for candidates
+      retryForCandidates:
+        # Maximum retry attempts
+        maxRetryAttempts: 3
+        # Wait duration
+        waitDuration: 2000
+
+# Server configuration
+server:
+  # Server port
+  port: 8084

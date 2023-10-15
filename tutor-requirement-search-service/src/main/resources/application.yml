@@ -1,0 +1,76 @@
+spring:
+  application:
+    name: ${APPLICATION_NAME:tutor-requirement-search-service}
+
+  kafka:
+    consumer:
+      # Kafka server to connect to
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
+      # Consumer group to register with Kafka
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:services-group}
+
+    custom:
+      # Enable Kafka listener
+      enable-listeners: ${KAFKA_ENABLE_LISTENERS:true}
+      # Topic to listen to
+      tutor-requirement-topic: ${KAFKA_TUTOR_REQUIREMENT_TOPIC:tutor-requirement-events}
+
+
+  cache:
+    # Cache type
+    type: redis
+  redis:
+    # Redis host
+    host: ${REDIS_HOST:localhost}
+    # Redis port
+    port: ${REDIS_PORT:6379}
+    # Redis password
+    password: ${REDIS_PASSWORD:redis-pass}
+
+  sleuth:
+    # Enable Sleuth
+    enabled: ${SLEUTH_ENABLED:true}
+    sampler:
+      # Sampling probability
+      probability: 1
+
+  zipkin:
+    # Enable Zipkin
+    enabled: ${ZIPKIN_ENABLED:true}
+    # Zipkin URL
+    base-url: ${ZIPKIN_URL:http://localhost:9411/}
+
+app:
+  elastic:
+    # Elasticsearch host
+    host: ${ELASTIC_HOST:localhost}
+    # Elasticsearch port
+    port: ${ELASTIC_PORT:9200}
+    # Elasticsearch username
+    username: ${ELASTIC_USERNAME:}
+    # Elasticsearch password
+    password: ${ELASTIC_PASSWORD:}
+
+  jwt:
+    # JWT secret key
+    token:
+      secret-key: ${JWT_SECRET_KEY:secret}
+      # JWT expiry
+      expiry: 100000
+
+server:
+  # Server port
+  port: ${SERVER_PORT:8081}
+
+management:
+  # Enable metrics endpoint
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  # Enable endpoints
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
