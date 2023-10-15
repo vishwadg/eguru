@@ -44,7 +44,7 @@ public class KafkaConsumerConfig {
 
         //Configure the value deserializer for JSON messages
         final JsonDeserializer<Object> valueDeserializer = new JsonDeserializer<>();
-        valueDeserializer.addTrustedPackages("com.example.commonsmodule.DTOs");// Trusted packages for deserialization
+        valueDeserializer.addTrustedPackages("com.example.commonmodule.DTOs");// Trusted packages for deserialization
 
         defaultKafkaConsumerFactory.setValueDeserializer(valueDeserializer);
 

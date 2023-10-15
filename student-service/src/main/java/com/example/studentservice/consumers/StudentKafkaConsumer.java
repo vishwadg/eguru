@@ -1,8 +1,8 @@
 package com.example.studentservice.consumers;
 
-import com.example.commonsmodule.DTOs.StudentDTO;
-import com.example.commonsmodule.DTOs.TutorRequirementDTO;
-import com.example.commonsmodule.DTOs.UserDTO;
+import com.example.commonmodule.DTOs.StudentDTO;
+import com.example.commonmodule.DTOs.TutorRequirementDTO;
+import com.example.commonmodule.DTOs.UserDTO;
 import com.example.studentservice.services.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
