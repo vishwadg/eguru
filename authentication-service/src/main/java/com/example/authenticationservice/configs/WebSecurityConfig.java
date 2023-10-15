@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -50,29 +51,24 @@ public class WebSecurityConfig {
     // Configure security filters and rules
     @Bean
     protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
-//                .csrf().disable().httpBasic()
-//                .and()
-//                .authorizeRequests(req -> req
-//                        .antMatchers("/users/**").permitAll()
-//                        .anyRequest().authenticated()
-//                )
-//                .exceptionHandling(e -> e
-//                        .authenticationEntryPoint(((request, response, authException) ->
-//                                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage())))
+        return httpSecurity.cors(Customizer.withDefaults())
+//                .csrf().disable().httpBasic().and()
+//                .authorizeRequests(r ->
+//                        r.antMatchers("/", "/actuators/**").permitAll()
+//                                .anyRequest().authenticated()
 //                )
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 //                .and()
-                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider()), UsernamePasswordAuthenticationFilter.class)
+//                .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
     // Create a JwtTokenProvider bean for handling JWT (JSON Web Token) authentication
-    @Bean
-    public JwtTokenProvider jwtTokenProvider() {
-        JwtTokenProvider jwtTokenProvider = new JwtTokenProvider(secret, jwtExpiry);
-        return jwtTokenProvider;
-    }
+//    @Bean
+//    public JwtTokenProvider jwtTokenProvider() {
+//        JwtTokenProvider jwtTokenProvider = new JwtTokenProvider(secret, jwtExpiry);
+//        return jwtTokenProvider;
+//    }
 
     // Define a ModelMapper bean for mapping objects
     @Bean

@@ -1,9 +1,6 @@
 package com.example.authenticationservice.services.impl;
 
 import com.example.authenticationservice.entities.DTOs.TokenResponse;
-import com.example.commonmodule.DTOs.UserDTO;
-import com.example.commonmodule.security.JwtTokenProvider;
-import com.example.commonmodule.security.enums.UserRole;
 import com.example.commonmodule.DTOs.StudentDTO;
 import com.example.commonmodule.DTOs.TutorDTO;
 import com.example.commonmodule.DTOs.UserDTO;
@@ -33,7 +30,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-    private final JwtTokenProvider jwtTokenProvider;;
+    @Value("${app.security.jwt.secret}")
+    private String secret;
+    @Value("${app.security.jwt.expiry}")
+    private Long jwtExpiry;
+
+    private JwtTokenProvider jwtTokenProvider = new JwtTokenProvider("secret", 100000);
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Value("${spring.kafka.custom.tutor-signup-topic}")
