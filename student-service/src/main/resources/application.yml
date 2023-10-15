@@ -47,12 +47,12 @@ spring:
       # Sampling percentage
       percentage: 1
 
-  # Zipkin configuration
-  zipkin:
-    # Enable Zipkin
-    enabled: ${ZIPKIN_ENABLED:true}
-    # Zipkin base URL
-    base-url: ${ZIPKIN_URL:http://localhost:9411/}
+#  # Zipkin configuration
+#  zipkin:
+#    # Enable Zipkin
+#    enabled: ${ZIPKIN_ENABLED:true}
+#    # Zipkin base URL
+#    base-url: ${ZIPKIN_URL:http://localhost:9411/}
 
 # JWT configuration
 app:

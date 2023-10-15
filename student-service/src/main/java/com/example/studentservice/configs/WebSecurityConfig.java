@@ -32,18 +32,16 @@ public class WebSecurityConfig {
 
     // Create a bean for the SecurityFilterChain
     @Bean
-    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
-
-        // Create a bean for the CorsConfigurationSource
-        return http.cors(Customizer.withDefaults())
-                .csrf().disable().httpBasic().and()
-                .authorizeRequests(ar -> ar
-                        .anyRequest().authenticated()
-                )
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                // Add the JWT token filter before the username password authentication filter
-                .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+    protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity.cors(Customizer.withDefaults())
+//                .csrf().disable().httpBasic().and()
+//                .authorizeRequests(r ->
+//                        r.antMatchers("/", "/actuators/**").permitAll()
+//                                .anyRequest().authenticated()
+//                )
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
