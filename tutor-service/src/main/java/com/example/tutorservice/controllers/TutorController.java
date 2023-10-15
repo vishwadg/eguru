@@ -40,13 +40,13 @@ public class TutorController {
     }
 
     /**
-     * Fallback method to handle tutor service failures. It attempts to sign up the tutor again.
+     * Method to sign up the tutor.
      *
      * @param tutorDTO  The data transfer object representing the tutor's details.
-     * @param throwable The exception thrown by the tutor service.
      * @return A response entity containing the signed-up tutor information.
      */
-    private TutorDTO tutorServiceFallback(TutorDTO tutorDTO, Throwable throwable) {
+    @PostMapping
+    private TutorDTO save(TutorDTO tutorDTO) {
         return tutorService.signupTutor(tutorDTO);
     }
 }
