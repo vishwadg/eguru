@@ -1,4 +1,4 @@
-package com.example.tutorrequirementservice.configs;
+package com.example.tutorservice.configs;
 
 import com.example.commonmodule.security.JwtTokenFilter;
 import com.example.commonmodule.security.JwtTokenProvider;
@@ -23,66 +23,46 @@ import java.util.Arrays;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
-
-    // Get the secret key and expiry time from the environment variables
     @Value("${app.jwt.token.secret-key}")
-    private String secretKey;
+    private String secret;
     @Value("${app.jwt.token.expiry}")
     private Long expiry;
 
-    // Create a bean for the SecurityFilterChain
     @Bean
-    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
-
-        // Disable CSRF and enable HTTPBasic authentication
-        return http.cors(Customizer.withDefaults())
-                .csrf().disable().httpBasic().and()
-                // Allow requests to the root, actuator and any other requests to be unauthenticated
-                .authorizeRequests(ar -> ar
-                        .antMatchers("/", "/actuator/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                // Disable sessions
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                // Add the JWT token filter before the username password authentication filter
-                .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+    protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity.cors(Customizer.withDefaults())
+//                .csrf().disable().httpBasic().and()
+//                .authorizeRequests(r ->
+//                        r.antMatchers("/", "/actuators/**").permitAll()
+//                                .anyRequest().authenticated()
+//                )
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
-    // Create a bean for the JWT token filter
-    public JwtTokenFilter jwtTokenFilter() {
-        JwtTokenFilter jwtTokenFilter = new JwtTokenFilter(new JwtTokenProvider(secretKey, expiry));
+    public JwtTokenFilter jwtTokenFilter(){
+        JwtTokenFilter jwtTokenFilter = new JwtTokenFilter(new JwtTokenProvider(secret, expiry));
         return jwtTokenFilter;
     }
 
-    // Create a bean for the CORS configuration source
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        // Allow requests from any origin
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        // Allow requests with any method
-        configuration.setAllowedMethods(Arrays.asList("*"));
-        // Allow requests with any header
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        // Expose any header
-        configuration.setExposedHeaders(Arrays.asList("*"));
-        // Set the max age of the CORS request
-        configuration.setMaxAge(3600L);
-        // Disable credentials
-        configuration.setAllowCredentials(false);
-        // Create a URL based CORS configuration source
+        CorsConfiguration corsConfig = new CorsConfiguration();
+        corsConfig.setAllowedOrigins(Arrays.asList("*"));
+        corsConfig.setAllowedHeaders(Arrays.asList("*"));
+        corsConfig.setAllowedMethods(Arrays.asList("*"));
+        corsConfig.setExposedHeaders(Arrays.asList("*"));
+        corsConfig.setMaxAge(3600L);
+        corsConfig.setAllowCredentials(false);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        // Register the CORS configuration
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/**", corsConfig);
         return source;
     }
 
-    // Create a bean for the ModelMapper
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-
 }

@@ -1,11 +1,11 @@
 package com.example.authenticationservice.entities;
 
 import com.example.commonmodule.security.enums.UserRole;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
