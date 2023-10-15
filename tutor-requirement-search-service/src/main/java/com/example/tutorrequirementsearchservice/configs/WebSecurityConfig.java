@@ -37,18 +37,16 @@ public class WebSecurityConfig {
 
 //@Bean annotation
     @Bean
-    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
-
-//return statement
-        return http.cors(Customizer.withDefaults())
-                .csrf().disable().httpBasic().and()
-                .authorizeRequests(ar -> ar
-                        .antMatchers("/**", "/actuator/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+    protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity.cors(Customizer.withDefaults())
+//                .csrf().disable().httpBasic().and()
+//                .authorizeRequests(r ->
+//                        r.antMatchers("/", "/actuators/**").permitAll()
+//                                .anyRequest().authenticated()
+//                )
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
