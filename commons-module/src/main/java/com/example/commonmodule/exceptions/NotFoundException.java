@@ -1,19 +1,41 @@
 package com.example.commonmodule.exceptions;
 
-public class NotFoundException extends RuntimeException{
-    public NotFoundException(){
+/**
+ * The type Not found exception.
+ */
+public class NotFoundException extends RuntimeException {
+    /**
+     * Instantiates a new Not found exception.
+     */
+    public NotFoundException() {
         super();
     }
 
-    public NotFoundException(String message){
+    /**
+     * Instantiates a new Not found exception.
+     *
+     * @param message the message
+     */
+    public NotFoundException(String message) {
         super(message);
     }
 
-    public NotFoundException(String message, Throwable cause){
+    /**
+     * Instantiates a new Not found exception.
+     *
+     * @param message the message
+     * @param cause   the cause
+     */
+    public NotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public NotFoundException(Throwable cause){
+    /**
+     * Instantiates a new Not found exception.
+     *
+     * @param cause the cause
+     */
+    public NotFoundException(Throwable cause) {
         super(cause);
     }
 }

@@ -3,14 +3,14 @@ package com.example.reservationservice.controllers;
 import com.example.commonmodule.DTOs.ReservationDTO;
 import com.example.reservationservice.services.ReservationService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 /**
- * The ReservationController class serves as the controller for managing reservation-related endpoints.
+ * The type Reservation controller.
  */
 @Slf4j
 @RestController
@@ -22,10 +22,10 @@ public class ReservationController {
     private ReservationService reservationService;
 
     /**
-     * Creates a new reservation
+     * Reserve response entity.
      *
-     * @param reservationDTO The ReservationDTO object containing reservation details.
-     * @return A ResponseEntity with the saved ReservationDTO and an HTTP status of 200 (OK).
+     * @param reservationDTO the reservation dto
+     * @return the response entity
      */
     @PostMapping
     @PreAuthorize("hasRole('ROLE_TUTOR')")
@@ -34,10 +34,10 @@ public class ReservationController {
     }
 
     /**
-     * Updates the status of a reservation.
+     * Update reservation status response entity.
      *
-     * @param reservationDTO The ReservationDTO object containing updated reservation status.
-     * @return A ResponseEntity with the updated ReservationDTO and an HTTP status of 200 (OK).
+     * @param reservationDTO the reservation dto
+     * @return the response entity
      */
     @PutMapping
     @PreAuthorize("hasRole('ROLE_STUDENT')")
@@ -46,21 +46,22 @@ public class ReservationController {
     }
 
     /**
-     * Retrieves a reservation by its unique identifier.
+     * Find reservation by id response entity.
      *
-     * @param id The unique identifier of the reservation.
-     * @return A ResponseEntity with the found ReservationDTO and an HTTP status of 200 (OK).
+     * @param id the id
+     * @return the response entity
      */
     @GetMapping("/{id}")
     public ResponseEntity<?> findReservationById(@PathVariable String id) {
         return new ResponseEntity<>(reservationService.findById(id), HttpStatus.OK);
     }
 
+
     /**
-     * Retrieves a list of reservations associated with a specific tutor requirement or subject.
+     * Find all reservation by tutor requirement id response entity.
      *
-     * @param tutorRequirement The ID of the tutor requirement or subject.
-     * @return A ResponseEntity with a list of ReservationDTO objects and an HTTP status of 200 (OK).
+     * @param tutorRequirement the tutor requirement
+     * @return the response entity
      */
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     @GetMapping("/tutorRequirementId/{tutorRequirement}")
@@ -69,9 +70,9 @@ public class ReservationController {
     }
 
     /**
-     * Retrieves all reservations made by a user.
+     * Find all reservations by tutor id response entity.
      *
-     * @return A ResponseEntity with a list of ReservationDTO objects and an HTTP status of 200 (OK).
+     * @return the response entity
      */
     @GetMapping("/all-by-tutor")
     public ResponseEntity<?> findAllReservationsByTutorId(){
@@ -79,13 +80,12 @@ public class ReservationController {
     }
 
     /**
-     * Retrieves all reservation requests made by a user.
+     * Find all reservations requests by student user id response entity.
      *
-     * @return A ResponseEntity with a list of ReservationDTO objects and an HTTP status of 200 (OK).
+     * @return the response entity
      */
     @GetMapping("/all-requests")
     public ResponseEntity<?> findAllReservationsRequestsByStudentUserId(){
         return new ResponseEntity<>(reservationService.findAllReservationRequestByStudentUserId(), HttpStatus.OK);
     }
 }
-

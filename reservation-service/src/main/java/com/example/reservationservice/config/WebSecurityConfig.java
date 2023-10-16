@@ -1,6 +1,5 @@
 package com.example.reservationservice.config;
 
-
 import com.example.commonmodule.security.JwtTokenFilter;
 import com.example.commonmodule.security.JwtTokenProvider;
 import org.modelmapper.ModelMapper;
@@ -11,9 +10,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -21,8 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 
 /**
- * The WebSecurityConfig class provides security configuration for the reservation service.
- * It configures authentication, authorization, JWT token handling, and CORS settings.
+ * The type Web security config.
  */
 @Configuration
 @EnableWebSecurity
@@ -33,6 +29,13 @@ public class WebSecurityConfig {
     @Value("${app.jwt.token.expiry}")
     private Long expiry;
 
+    /**
+     * Configure security filter chain.
+     *
+     * @param httpSecurity the http security
+     * @return the security filter chain
+     * @throws Exception the exception
+     */
     @Bean
     protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.cors(Customizer.withDefaults())
@@ -40,6 +43,7 @@ public class WebSecurityConfig {
 //                .authorizeRequests(r ->
 //                        r.antMatchers("/", "/actuators/**").permitAll()
 //                                .anyRequest().authenticated()
+//
 //                )
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 //                .and()
@@ -48,15 +52,20 @@ public class WebSecurityConfig {
     }
 
     /**
-     * Creates and configures the JWT token filter.
+     * Jwt token filter jwt token filter.
      *
-     * @return An instance of JwtTokenFilter.
+     * @return the jwt token filter
      */
     public JwtTokenFilter jwtTokenFilter(){
         JwtTokenFilter jwtTokenFilter = new JwtTokenFilter(new JwtTokenProvider(secret, expiry));
         return jwtTokenFilter;
     }
 
+    /**
+     * Cors configuration source cors configuration source.
+     *
+     * @return the cors configuration source
+     */
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
@@ -71,6 +80,11 @@ public class WebSecurityConfig {
         return source;
     }
 
+    /**
+     * Model mapper model mapper.
+     *
+     * @return the model mapper
+     */
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();

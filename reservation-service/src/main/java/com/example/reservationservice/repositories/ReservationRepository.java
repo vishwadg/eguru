@@ -7,34 +7,31 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * The ReservationRepository interface provides access to the MongoDB data store for reservation entities.
- * It extends the MongoRepository interface and defines additional methods for querying and managing reservations.
+ * The interface Reservation repository.
  */
 @Repository
 public interface ReservationRepository extends MongoRepository<Reservation, String> {
-
     /**
-     * Retrieves a list of reservations associated with a specific tutor requirement or subject.
+     * Find reservations by tutor requirement id list.
      *
-     * @param tutorRequirementId The ID of the tutor requirement or subject to filter reservations.
-     * @return A list of Reservation objects matching the specified requirement.
+     * @param tutorRequirementId the tutor requirement id
+     * @return the list
      */
     List<Reservation> findReservationsByTutorRequirementId(String tutorRequirementId);
 
     /**
-     * Retrieves all reservations made by a tutor user.
+     * Find all by tutor user id list.
      *
-     * @param userId The ID of the tutor user to filter reservations.
-     * @return A list of Reservation objects made by the specified user.
+     * @param userId the user id
+     * @return the list
      */
     List<Reservation> findAllByTutorUserId(Long userId);
 
     /**
-     * Retrieves all reservation
+     * Find all by student user id list.
      *
-     * @param userId The ID of the student user to filter reservation requests.
-     * @return A list of Reservation objects representing reservation requests.
+     * @param userId the user id
+     * @return the list
      */
     List<Reservation> findAllByStudentUserId(Long userId);
 }
-

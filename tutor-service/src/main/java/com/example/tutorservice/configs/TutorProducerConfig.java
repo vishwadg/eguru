@@ -15,8 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The TutorProducerConfig class configures Kafka producer properties and settings for producing messages.
- * It specifies the bootstrap servers and serializer classes for message keys and values.
+ * The type Tutor producer config.
  */
 @Configuration
 public class TutorProducerConfig {
@@ -25,9 +24,9 @@ public class TutorProducerConfig {
 
 
     /**
-     * Configure Kafka producer properties for producing messages.
+     * Tutor producer config map.
      *
-     * @return A map of producer properties.
+     * @return the map
      */
     public Map<String, Object> tutorProducerConfig() {
         Map<String, Object> tpConfig = new HashMap<>();
@@ -37,11 +36,11 @@ public class TutorProducerConfig {
         return tpConfig;
     }
 
-
     /**
-     * Create a Kafka producer factory for producing messages.
+     * Producer factory producer factory.
      *
-     * @return The Kafka producer factory configured with properties.
+     * @param <T> the type parameter
+     * @return the producer factory
      */
     @Bean
     public <T> ProducerFactory<String, T> producerFactory() {
@@ -49,9 +48,10 @@ public class TutorProducerConfig {
     }
 
     /**
-     * Create a KafkaTemplate for producing messages.
+     * Kafka template kafka template.
      *
-     * @return The KafkaTemplate configured with the producer factory.
+     * @param <T> the type parameter
+     * @return the kafka template
      */
     @Primary
     @Bean

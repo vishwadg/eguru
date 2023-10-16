@@ -8,21 +8,34 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * The TutorController class provides RESTful API endpoints for managing tutor-related operations.
- * It handles requests to retrieve tutor information by ID and list all tutors.
+ * The type Tutor controller.
  */
 @RestController
 @CrossOrigin
 @RequestMapping("/tutors")
 public class TutorController {
+    /**
+     * The Tutor service.
+     */
     @Autowired
     TutorService tutorService;
 
     /**
-     * Retrieve tutor information by their unique ID.
+     * Signup tutor response entity.
      *
-     * @param id The ID of the tutor to retrieve.
-     * @return A response entity containing the tutor information.
+     * @param tutorDTO the tutor dto
+     * @return the response entity
+     */
+    @PostMapping
+    ResponseEntity<?> signupTutor(@RequestBody TutorDTO tutorDTO) {
+        return new ResponseEntity<>(tutorService.signupTutor(tutorDTO), HttpStatus.OK);
+    }
+
+    /**
+     * Gets tutor by id.
+     *
+     * @param id the id
+     * @return the tutor by id
      */
     @GetMapping("/{id}")
     public ResponseEntity<?> getTutorById(@PathVariable String id) {
@@ -30,23 +43,12 @@ public class TutorController {
     }
 
     /**
-     * Retrieve a list of all tutors available in the system.
+     * Gets all tutor.
      *
-     * @return A response entity containing the list of tutors.
+     * @return the all tutor
      */
     @GetMapping
     public ResponseEntity<?> getAllTutor() {
         return new ResponseEntity<>(tutorService.findAll(), HttpStatus.OK);
-    }
-
-    /**
-     * Method to sign up the tutor.
-     *
-     * @param tutorDTO  The data transfer object representing the tutor's details.
-     * @return A response entity containing the signed-up tutor information.
-     */
-    @PostMapping
-    private TutorDTO save(TutorDTO tutorDTO) {
-        return tutorService.signupTutor(tutorDTO);
     }
 }

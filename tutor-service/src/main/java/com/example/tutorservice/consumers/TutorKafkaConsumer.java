@@ -9,20 +9,22 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 /**
- * The TutorKafkaConsumer class listens to Kafka messages related to tutor sign-up and processes them.
- * It consumes messages from the specified Kafka topic and triggers the tutor sign-up process.
+ * The type Tutor kafka consumer.
  */
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class TutorKafkaConsumer {
 
+    /**
+     * The Tutor service.
+     */
     public final TutorService tutorService;
 
     /**
-     * Listens to the specified Kafka topic for tutor sign-up messages and processes them.
+     * Consume tutor sign up dto.
      *
-     * @param userDTO The data transfer object representing tutor sign-up information.
+     * @param userDTO the user dto
      */
     @KafkaListener(topics = {"${spring.kafka.custom.tutor-signup-topic}"}, containerFactory = "kafkaListenerJsonFactory",
             groupId = "${spring.kafka.consumer.group-id}", autoStartup = "${spring.kafka.custom.enable-listeners}")

@@ -20,8 +20,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 
 /**
- * The WebSecurityConfig class configures web security for the application.
- * It enables global method security, sets JWT token properties, and configures CORS (Cross-Origin Resource Sharing).
+ * The type Web security config.
  */
 @Configuration
 @EnableWebSecurity
@@ -32,18 +31,17 @@ public class WebSecurityConfig {
     @Value("${app.jwt.token.expiry}")
     private Long expiry;
 
-
     /**
-     * Configure security filters and settings for HTTP requests.
+     * Configure security filter chain.
      *
-     * @param httpSecurity The HttpSecurity object to configure.
-     * @return A SecurityFilterChain.
-     * @throws Exception If an exception occurs during configuration.
+     * @param httpSecurity the http security
+     * @return the security filter chain
+     * @throws Exception the exception
      */
     @Bean
     protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.cors(Customizer.withDefaults())
-                .csrf().disable().httpBasic().and()
+//                .csrf().disable().httpBasic().and()
 //                .authorizeRequests(r ->
 //                        r.antMatchers("/", "/actuators/**").permitAll()
 //                                .anyRequest().authenticated()
@@ -56,9 +54,9 @@ public class WebSecurityConfig {
     }
 
     /**
-     * Create a JWT token filter for handling JWT authentication.
+     * Jwt token filter jwt token filter.
      *
-     * @return The configured JWT token filter.
+     * @return the jwt token filter
      */
     public JwtTokenFilter jwtTokenFilter(){
         JwtTokenFilter jwtTokenFilter = new JwtTokenFilter(new JwtTokenProvider(secret, expiry));
@@ -66,9 +64,9 @@ public class WebSecurityConfig {
     }
 
     /**
-     * Configure CORS (Cross-Origin Resource Sharing) settings.
+     * Cors configuration source cors configuration source.
      *
-     * @return A CorsConfigurationSource.
+     * @return the cors configuration source
      */
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
@@ -85,9 +83,9 @@ public class WebSecurityConfig {
     }
 
     /**
-     * Create a ModelMapper bean for object mapping.
+     * Model mapper model mapper.
      *
-     * @return The configured ModelMapper.
+     * @return the model mapper
      */
     @Bean
     public ModelMapper modelMapper() {

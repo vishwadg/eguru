@@ -4,24 +4,22 @@ import com.example.commonmodule.DTOs.TutorDTO;
 import com.example.tutorservice.entities.Tutor;
 import com.example.tutorservice.repositories.TutorRepository;
 import com.example.tutorservice.services.TutorService;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
- * The TutorServiceImpl class provides the implementation of the TutorService interface.
- * It handles tutor-related operations, such as signing up a tutor, finding a tutor by ID, and listing all tutors.
+ * The type Tutor service.
  */
 @Service
 @Slf4j
 public class TutorServiceImpl implements TutorService {
-
     @Value("${spring.kafka.custom.tutor-signup-email-topic}")
     private String tutorSignupEmailTopic;
 
@@ -34,12 +32,6 @@ public class TutorServiceImpl implements TutorService {
     @Autowired
     private ModelMapper modelMapper;
 
-    /**
-     * Sign up a new tutor with the provided information.
-     *
-     * @param tutorDTO The data transfer object representing the tutor's details.
-     * @return A DTO representing the newly signed-up tutor.
-     */
     @Override
     public TutorDTO signupTutor(TutorDTO tutorDTO) {
         Tutor tutor = modelMapper.map(tutorDTO, Tutor.class);
@@ -47,16 +39,10 @@ public class TutorServiceImpl implements TutorService {
         log.info("Success: Tutor data saved");
         tutorDTO.setTutorId(tutorRepo.getTutorId());
         kafkaTutorTemplate.send(tutorSignupEmailTopic, tutorDTO);
-        log.info("Tutor Signup email request sent on Kafka queue. {}", tutorDTO);
+        log.info("Tutor Signup email request sent on kafka queue. {}", tutorDTO);
         return tutorDTO;
     }
 
-    /**
-     * Find and retrieve a tutor by their unique ID.
-     *
-     * @param id The ID of the tutor to find.
-     * @return A DTO representing the tutor with the specified ID.
-     */
     @Override
     public TutorDTO findById(String id) {
         Optional<Tutor> tutorOptional = tutorRepository.findById(id);
@@ -72,11 +58,6 @@ public class TutorServiceImpl implements TutorService {
         return tutorDTO;
     }
 
-    /**
-     * Retrieve a list of all tutors available in the system.
-     *
-     * @return A list of DTOs representing all tutors.
-     */
     @Override
     public List<TutorDTO> findAll() {
         List<Tutor> tutorList = tutorRepository.findAll();
@@ -86,10 +67,11 @@ public class TutorServiceImpl implements TutorService {
         }
 
         List<TutorDTO> tutorDTOList = tutorList.stream().map(
-                tutor -> modelMapper.map(tutor, TutorDTO.class)
-        ).toList();
+                tutor -> {
+                    TutorDTO tutorDTO = modelMapper.map(tutor, TutorDTO.class);
+                    return tutorDTO;
+                }).toList();
         log.info("Success: Tutors list found");
         return tutorDTOList;
     }
 }
-

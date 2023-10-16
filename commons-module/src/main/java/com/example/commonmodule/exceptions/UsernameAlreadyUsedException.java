@@ -1,7 +1,13 @@
 package com.example.commonmodule.exceptions;
 
-public class UsernameAlreadyUsedException extends RuntimeException{
-    public UsernameAlreadyUsedException(){
+/**
+ * The type Username already used exception.
+ */
+public class UsernameAlreadyUsedException extends RuntimeException {
+    /**
+     * Instantiates a new Username already used exception.
+     */
+    public UsernameAlreadyUsedException() {
         super("Username Already Used");
     }
 }

@@ -5,8 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The TutorRequirementDTO class represents a data transfer object for tutor requirement-related information.
- * It includes fields such as ID, title, description, student user ID, and posted date.
+ * The type Tutor requirement dto.
  */
 @Data
 @AllArgsConstructor

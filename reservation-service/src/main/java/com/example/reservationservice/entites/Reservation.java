@@ -1,15 +1,14 @@
 package com.example.reservationservice.entites;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import lombok.Data;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 /**
- * The Reservation class represents a reservation entity in the tutoring application.
- * It is mapped to the "Reservation" collection in the MongoDB database.
+ * The type Reservation.
  */
 @Data
 @Builder

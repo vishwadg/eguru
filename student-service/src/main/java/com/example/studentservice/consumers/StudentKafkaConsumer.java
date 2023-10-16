@@ -1,7 +1,6 @@
 package com.example.studentservice.consumers;
 
 import com.example.commonmodule.DTOs.StudentDTO;
-import com.example.commonmodule.DTOs.TutorRequirementDTO;
 import com.example.commonmodule.DTOs.UserDTO;
 import com.example.studentservice.services.StudentService;
 import lombok.RequiredArgsConstructor;

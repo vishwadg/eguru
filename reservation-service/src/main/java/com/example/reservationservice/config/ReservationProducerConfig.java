@@ -1,6 +1,7 @@
 package com.example.reservationservice.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,14 +10,12 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The ReservationProducerConfig class provides configuration for producing messages to a Kafka topic.
- * It defines the producer properties, such as the bootstrap servers and serializers.
+ * The type Reservation producer config.
  */
 @Configuration
 public class ReservationProducerConfig {
@@ -24,9 +23,9 @@ public class ReservationProducerConfig {
     private String kafkaProducerServers;
 
     /**
-     * Creates a configuration map for the Kafka producer.
+     * Tutor producer config map.
      *
-     * @return A Map of producer configuration properties.
+     * @return the map
      */
     public Map<String, Object> tutorProducerConfig() {
         Map<String, Object> tpConfig = new HashMap<>();
@@ -37,10 +36,10 @@ public class ReservationProducerConfig {
     }
 
     /**
-     * Creates a producer factory for producing messages to Kafka.
+     * Producer factory producer factory.
      *
-     * @param <T> The type of values to be sent to the Kafka topic.
-     * @return A ProducerFactory for producing messages to Kafka.
+     * @param <T> the type parameter
+     * @return the producer factory
      */
     @Bean
     public <T> ProducerFactory<String, T> producerFactory() {
@@ -48,15 +47,15 @@ public class ReservationProducerConfig {
     }
 
     /**
-     * Creates a KafkaTemplate for sending messages to Kafka.
+     * Kafka template kafka template.
      *
-     * @param <T> The type of values to be sent to the Kafka topic.
-     * @return A KafkaTemplate for producing and sending messages to Kafka.
+     * @param <T> the type parameter
+     * @return the kafka template
      */
     @Primary
     @Bean
     public <T> KafkaTemplate<String, T> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
-}
 
+}

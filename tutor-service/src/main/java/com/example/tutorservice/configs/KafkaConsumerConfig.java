@@ -17,8 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The KafkaConsumerConfig class configures Kafka consumer properties and settings for consuming JSON messages.
- * It specifies the bootstrap servers, group ID, and deserializer classes for message keys and values.
+ * The type Kafka consumer config.
  */
 @EnableKafka
 @Configuration
@@ -33,9 +32,9 @@ public class KafkaConsumerConfig {
     private String groupId;
 
     /**
-     * Configure Kafka consumer properties for JSON messages.
+     * Consumer json config map.
      *
-     * @return A map of consumer properties.
+     * @return the map
      */
     public Map<String, Object> consumerJsonConfig() {
         Map<String, Object> props = new HashMap<>();
@@ -47,9 +46,10 @@ public class KafkaConsumerConfig {
     }
 
     /**
-     * Create a Kafka listener container factory for JSON messages.
+     * Kafka listener json factory concurrent kafka listener container factory.
      *
-     * @return The Kafka listener container factory configured for JSON deserialization.
+     * @param <T> the type parameter
+     * @return the concurrent kafka listener container factory
      */
     @Bean
     public <T> ConcurrentKafkaListenerContainerFactory<?, ?> kafkaListenerJsonFactory() {

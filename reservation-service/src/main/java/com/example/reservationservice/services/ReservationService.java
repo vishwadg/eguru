@@ -5,58 +5,52 @@ import com.example.commonmodule.DTOs.ReservationDTO;
 import java.util.List;
 
 /**
- * The ReservationService interface defines a set of methods for managing reservations within a tutoring application.
- * Reservations are bookings made by students for tutoring sessions with tutors.
- * This interface provides a contract for handling reservation-related operations.
+ * The interface Reservation service.
  */
 public interface ReservationService {
-
     /**
-     * Saves a new reservation to the system, creating a record of the booking.
+     * Save reservation dto.
      *
-     * @param reservationDTO The ReservationDTO object containing reservation information to be saved.
-     * @return The ReservationDTO object representing the saved reservation.
+     * @param reservationDTO the reservation dto
+     * @return the reservation dto
      */
     ReservationDTO save(ReservationDTO reservationDTO);
 
     /**
-     * Retrieves a list of reservations associated with a specific tutor requirement or subject.
-     * This can be useful for tutors to see all their bookings for a particular subject.
+     * Find all by tutor requirement id list.
      *
-     * @param tutorRequirement The ID of the tutor requirement or subject to filter reservations.
-     * @return A list of ReservationDTO objects matching the specified tutor requirement.
+     * @param tutorRequirement the tutor requirement
+     * @return the list
      */
     List<ReservationDTO> findAllByTutorRequirementId(String tutorRequirement);
 
     /**
-     * Fetches a specific reservation by its unique identifier, allowing for detailed information retrieval or updates.
+     * Find by id reservation dto.
      *
-     * @param id The unique identifier of the reservation to be retrieved.
-     * @return The ReservationDTO object representing the found reservation.
+     * @param id the id
+     * @return the reservation dto
      */
     ReservationDTO findById(String id);
 
     /**
-     * Updates the status of a reservation, such as confirming or canceling it.
-     * This function is essential for managing the booking lifecycle.
+     * Update reservation status reservation dto.
      *
-     * @param reservationDTO The ReservationDTO object containing updated reservation status.
-     * @return The ReservationDTO object representing the updated reservation.
+     * @param reservationDTO the reservation dto
+     * @return the reservation dto
      */
     ReservationDTO updateReservationStatus(ReservationDTO reservationDTO);
 
     /**
-     * Retrieves all reservations made by a tutor user, helping tutors keep track of their appointments.
+     * Find all reservation by tutor user id list.
      *
-     * @return A list of ReservationDTO objects representing reservations made by the tutor user.
+     * @return the list
      */
     List<ReservationDTO> findAllReservationByTutorUserId();
 
     /**
-     * Fetches all reservation requests made by a student user, enabling students to view their pending or confirmed bookings.
+     * Find all reservation request by student user id list.
      *
-     * @return A list of ReservationDTO objects representing reservation requests made by the student user.
+     * @return the list
      */
     List<ReservationDTO> findAllReservationRequestByStudentUserId();
 }
-

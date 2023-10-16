@@ -5,31 +5,29 @@ import com.example.commonmodule.DTOs.TutorDTO;
 import java.util.List;
 
 /**
- * The TutorService interface defines the operations available for managing tutors.
- * It includes methods for signing up a tutor, finding a tutor by ID, and listing all tutors.
+ * The interface Tutor service.
  */
 public interface TutorService {
     /**
-     * Sign up a new tutor with the provided information.
+     * Signup tutor tutor dto.
      *
-     * @param tutorDTO The data transfer object representing the tutor's details.
-     * @return A DTO representing the newly signed-up tutor.
+     * @param tutorDTO the tutor dto
+     * @return the tutor dto
      */
     TutorDTO signupTutor(TutorDTO tutorDTO);
 
     /**
-     * Find and retrieve a tutor by their unique ID.
+     * Find by id tutor dto.
      *
-     * @param id The ID of the tutor to find.
-     * @return A DTO representing the tutor with the specified ID.
+     * @param id the id
+     * @return the tutor dto
      */
     TutorDTO findById(String id);
 
     /**
-     * Retrieve a list of all tutors available in the system.
+     * Find all list.
      *
-     * @return A list of DTOs representing all tutors.
+     * @return the list
      */
     List<TutorDTO> findAll();
 }
-

@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The StudentDTO class represents a data transfer object for student-related information.
- * It includes fields such as ID, description, and user ID.
+ * The type Student dto.
  */
 @Data
 @Builder
@@ -18,4 +17,3 @@ public class StudentDTO {
     private String description;
     private Long userId;
 }
-

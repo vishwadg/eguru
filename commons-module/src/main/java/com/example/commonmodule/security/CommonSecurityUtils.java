@@ -9,45 +9,42 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * The CommonSecurityUtils class provides utility methods for handling security-related operations.
- * It includes methods for retrieving the current user's ID, user details, and converting role strings to user roles.
+ * The type Common security utils.
  */
 public class CommonSecurityUtils {
 
     /**
-     * Get the current user's ID, if available.
+     * Get current user id optional.
      *
-     * @return An optional containing the current user's ID, or an empty optional if not authenticated.
+     * @return the optional
      */
-    public static Optional<Long> getCurrentUserId() {
+    public static Optional<Long> getCurrentUserId(){
         return Optional.ofNullable(getCurrentUserDetails()).map(ud -> ud.getId());
     }
 
     /**
-     * Get the current user's details, if available.
+     * Get current user details our user details.
      *
-     * @return The user details of the currently authenticated user, or null if not authenticated.
+     * @return the our user details
      */
-    public static OurUserDetails getCurrentUserDetails() {
+    public static OurUserDetails getCurrentUserDetails(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            if (authentication.getPrincipal() instanceof OurUserDetails)
+        if(authentication != null){
+            if(authentication.getPrincipal() instanceof OurUserDetails)
                 return (OurUserDetails) authentication.getPrincipal();
         }
         return null;
     }
 
     /**
-     * Convert a set of role strings to a set of user roles.
+     * String set to user role set set.
      *
-     * @param roleString A set of role strings to convert.
-     * @return A set of user roles corresponding to the input role strings.
+     * @param roleString the role string
+     * @return the set
      */
-    public static Set<UserRole> stringSetToUserRoleSet(Set<String> roleString) {
+    public static Set<UserRole> stringSetToUserRoleSet(Set<String> roleString){
         Set<UserRole> userRoles = new HashSet<>();
-        for (String r : roleString) userRoles.add(Enum.valueOf(UserRole.class, r));
+        for(String r: roleString) userRoles.add(Enum.valueOf(UserRole.class, r));
         return userRoles;
     }
 }
-
-

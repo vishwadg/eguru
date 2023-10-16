@@ -8,8 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * The Tutor class represents a tutor entity with attributes such as expertise, short information, and user ID.
- * It is used to store tutor-related information in the 'Tutors' collection of the MongoDB database.
+ * The type Tutor.
  */
 @Data
 @AllArgsConstructor
@@ -23,4 +22,3 @@ public class Tutor {
     private String shortInfo;
     private Long userId;
 }
-

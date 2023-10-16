@@ -1,7 +1,5 @@
 package com.example.commonmodule.security;
 
-import com.example.commonmodule.security.CommonSecurityUtils;
-import com.example.commonmodule.security.OurUserDetails;
 import com.example.commonmodule.security.enums.UserRole;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,15 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
 
 import java.util.Base64;
 import java.util.Date;
 import java.util.Set;
 
 /**
- * The JwtTokenProvider class provides methods for creating, parsing, and validating JWT tokens.
- * It is used for authentication and authorization in the application.
+ * The type Jwt token provider.
  */
 @Slf4j
 public class JwtTokenProvider {
@@ -30,10 +26,10 @@ public class JwtTokenProvider {
     private Long jwtExpiry;
 
     /**
-     * Constructs a JwtTokenProvider with a secret key and token validity duration.
+     * Instantiates a new Jwt token provider.
      *
-     * @param secretKey         The secret key for signing the JWT.
-     * @param validityInSeconds The duration of token validity in seconds.
+     * @param secretKey         the secret key
+     * @param validityInSeconds the validity in seconds
      */
     public JwtTokenProvider(String secretKey, long validityInSeconds) {
         this.secret = Base64.getEncoder().encodeToString(secretKey.getBytes());
@@ -41,11 +37,11 @@ public class JwtTokenProvider {
     }
 
     /**
-     * Creates a JWT token based on the user's authentication information.
+     * Create token string.
      *
-     * @param authentication The user's authentication details.
-     * @return A JWT token as a string.
-     * @throws JsonProcessingException If there's an issue processing JSON data.
+     * @param authentication the authentication
+     * @return the string
+     * @throws JsonProcessingException the json processing exception
      */
     public String createToken(Authentication authentication) throws JsonProcessingException {
         OurUserDetails ourUserDetails = (OurUserDetails) authentication.getPrincipal();
@@ -65,10 +61,10 @@ public class JwtTokenProvider {
     }
 
     /**
-     * Retrieves a JWT token from the request's HTTP header.
+     * Gets token from request header.
      *
-     * @param req The HTTP request.
-     * @return The JWT token as a string or null if not found.
+     * @param req the req
+     * @return the token from request header
      */
     public String getTokenFromRequestHeader(HttpServletRequest req) {
         String bearerToken = req.getHeader(HEADER_AUTHORIZATION);
@@ -79,11 +75,11 @@ public class JwtTokenProvider {
     }
 
     /**
-     * Validates a JWT token.
+     * Validate token boolean.
      *
-     * @param token              The JWT token to be validated.
-     * @param httpServletRequest The HTTP servlet request.
-     * @return `true` if the token is valid, `false` otherwise.
+     * @param token              the token
+     * @param httpServletRequest the http servlet request
+     * @return the boolean
      */
     public boolean validateToken(String token, HttpServletRequest httpServletRequest) {
         try {
@@ -104,12 +100,12 @@ public class JwtTokenProvider {
     }
 
     /**
-     * Retrieves user authentication details from a JWT token.
+     * Gets authentication from token string.
      *
-     * @param token   The JWT token as a string.
-     * @param request The HTTP servlet request.
-     * @return An Authentication object representing the user's authentication details.
-     * @throws JsonProcessingException If there's an issue processing JSON data.
+     * @param token   the token
+     * @param request the request
+     * @return the authentication from token string
+     * @throws JsonProcessingException the json processing exception
      */
     public Authentication getAuthenticationFromTokenString(String token, HttpServletRequest request) throws JsonProcessingException {
         Claims body = Jwts.parser()
