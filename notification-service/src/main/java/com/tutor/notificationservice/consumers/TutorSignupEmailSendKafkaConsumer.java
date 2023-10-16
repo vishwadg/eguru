@@ -1,6 +1,5 @@
 package com.tutor.notificationservice.consumers;
 
-import com.example.commonmodule.DTOs.UserDTO;
 import com.tutor.notificationservice.entity.Email;
 import com.tutor.notificationservice.service.TutorEmailNotificationService;
 import lombok.RequiredArgsConstructor;

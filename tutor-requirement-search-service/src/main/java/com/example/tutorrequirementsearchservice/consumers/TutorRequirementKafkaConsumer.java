@@ -1,6 +1,5 @@
 package com.example.tutorrequirementsearchservice.consumers;
 
-import com.example.commonmodule.DTOs.TutorRequirementDTO;
 import com.example.tutorrequirementsearchservice.service.TutorRequirementSearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

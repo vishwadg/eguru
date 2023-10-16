@@ -1,12 +1,9 @@
 package com.example.tutorrequirementsearchservice.service.impl;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch.core.*;
 import co.elastic.clients.elasticsearch.core.search.Hit;
-import com.example.commonmodule.DTOs.TutorRequirementDTO;
-import com.example.commonmodule.exceptions.NotFoundException;
 import com.example.tutorrequirementsearchservice.service.TutorRequirementSearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

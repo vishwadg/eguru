@@ -1,6 +1,5 @@
 package com.example.studentservice.controllers;
 
-import com.example.commonmodule.DTOs.StudentDTO;
 import com.example.studentservice.services.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

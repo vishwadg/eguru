@@ -1,7 +1,6 @@
 package com.example.studentservice.service;
 
 
-import com.example.commonmodule.DTOs.StudentDTO;
 import com.example.studentservice.entities.Student;
 import com.example.studentservice.repositories.StudentRepository;
 import com.example.studentservice.services.impl.StudentServiceImpl;
