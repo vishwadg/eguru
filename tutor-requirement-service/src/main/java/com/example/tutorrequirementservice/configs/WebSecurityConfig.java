@@ -1,5 +1,7 @@
-package com.example.tutorservice.configs;
+package com.example.tutorrequirementservice.configs;
 
+import com.example.commonmodule.security.JwtTokenFilter;
+import com.example.commonmodule.security.JwtTokenProvider;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -57,8 +59,4 @@ public class WebSecurityConfig {
         return source;
     }
 
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
 }

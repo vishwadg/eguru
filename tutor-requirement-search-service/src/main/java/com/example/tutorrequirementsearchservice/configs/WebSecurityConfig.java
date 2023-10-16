@@ -1,6 +1,8 @@
 package com.example.tutorrequirementsearchservice.configs;
 
 //import statements
+import com.example.commonmodule.security.JwtTokenFilter;
+import com.example.commonmodule.security.JwtTokenProvider;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

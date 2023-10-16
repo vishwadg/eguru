@@ -1,5 +1,6 @@
 package com.example.tutorrequirementservice.controllers;
 
+import com.example.commonmodule.DTOs.TutorRequirementDTO;
 import com.example.tutorrequirementservice.services.TutorRequirementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

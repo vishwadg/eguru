@@ -1,6 +1,8 @@
 package com.example.tutorrequirementsearchservice.service;
 
 
+import com.example.commonmodule.DTOs.TutorRequirementDTO;
+
 import java.util.List;
 
 public interface TutorRequirementSearchService {
